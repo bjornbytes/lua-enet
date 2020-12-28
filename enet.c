@@ -772,9 +772,14 @@ static const struct luaL_Reg enet_event_funcs [] = {
 	{NULL, NULL}
 };
 
+static int initialized = 0;
+
 int luaopen_enet(lua_State *l) {
 	enet_initialize();
-	atexit(enet_deinitialize);
+  if (!initialized) {
+    initialized = 1;
+    atexit(enet_deinitialize);
+  }
 
 	// create metatables
 	luaL_newmetatable(l, "enet_host");
