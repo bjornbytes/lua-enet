@@ -9,6 +9,9 @@ set_target_properties(lua-enet PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
 target_include_directories(lua-enet PRIVATE enet/include)
 target_link_libraries(lua-enet enet)
 
+set_target_properties(lua-enet PROPERTIES PREFIX "")
+set_target_properties(lua-enet PROPERTIES OUTPUT_NAME "enet")
+
 if(WIN32)
   target_link_libraries(lua-enet ws2_32 winmm)
 endif()
